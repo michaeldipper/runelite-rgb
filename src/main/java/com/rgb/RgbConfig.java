@@ -10,16 +10,7 @@ import java.awt.*;
 public interface RgbConfig extends Config
 {
 	@ConfigItem(
-			keyName = "customColor",
-			name = "Custom Color",
-			description = "Specify a custom color"
-	)
-	default Color customColor()
-	{
-		return Color.WHITE;
-	}
-
-	@ConfigItem(
+			position = 0,
 			keyName = "customColorEnabled",
 			name = "Enable Custom Color",
 			description = "Determines whether the custom color will be used"
@@ -27,5 +18,16 @@ public interface RgbConfig extends Config
 	default boolean customColorEnabled()
 	{
 		return false;
+	}
+
+	@ConfigItem(
+			position = 1,
+			keyName = "customColor",
+			name = "Custom Color",
+			description = "Specify a custom color"
+	)
+	default Color customColor()
+	{
+		return Color.WHITE;
 	}
 }
