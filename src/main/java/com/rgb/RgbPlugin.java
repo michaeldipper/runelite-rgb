@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.rgb;
+package com.rgb;
 
 import com.google.inject.Provides;
 import javax.inject.Inject;
@@ -7,6 +7,7 @@ import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.VarbitChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
@@ -39,10 +40,17 @@ public class RgbPlugin extends Plugin
 	@Subscribe
 	public void onGameStateChanged(GameStateChanged gameStateChanged)
 	{
-		if (gameStateChanged.getGameState() == GameState.LOGGED_IN)
+		if (gameStateChanged.getGameState() == GameState.LOGIN_SCREEN)
 		{
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Example says " + config.greeting(), null);
+			log.info(String.format("Custom color enabled: %s", config.customColorEnabled()));
+			log.info(String.format("Custom color: %s", config.customColor().toString()));
 		}
+	}
+
+	@Subscribe
+	public void onVarbitChanged(VarbitChanged event)
+	{
+
 	}
 
 	@Provides

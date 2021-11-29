@@ -1,19 +1,31 @@
-package net.runelite.client.plugins.rgb;
+package com.rgb;
 
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
+import java.awt.*;
+
 @ConfigGroup("rgb")
 public interface RgbConfig extends Config
 {
 	@ConfigItem(
-		keyName = "greeting",
-		name = "Welcome Greeting",
-		description = "The message to show to the user when they login"
+			keyName = "customColor",
+			name = "Custom Color",
+			description = "Specify a custom color"
 	)
-	default String greeting()
+	default Color customColor()
 	{
-		return "Hello";
+		return Color.WHITE;
+	}
+
+	@ConfigItem(
+			keyName = "customColorEnabled",
+			name = "Enable Custom Color",
+			description = "Determines whether the custom color will be used"
+	)
+	default boolean customColorEnabled()
+	{
+		return false;
 	}
 }
